@@ -1,28 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.IO;
-
-////stuff for json file to write to
-//[Serializable]
-//public class TowerData {
-//	public string name;
-//	public int range;
-//	public int rateOfFire;
-//	public int damage;
-//	public int areaOfEffect;
-//	public int cost;
-//
-//	public int currentPathUps1;
-//	public int currentPathUps2;
-//	public int currentPathUps3;
-//
-//	public object[] upgradesPath1;
-//	public object[] upgradesPath2;
-//	public object[] upgradesPath3;
-//
-//}
 
 public class TowerBehavior : MonoBehaviour {
 
@@ -35,14 +13,6 @@ public class TowerBehavior : MonoBehaviour {
 	// Gets upgrade options
 	public GameObject optionOne;
 	public GameObject optionTwo;
-
-	//get data from json objects. This will be set by script instantiating this class
-	public string dataJSON;
-
-	// Use this for initialization
-	void Start () {
-		setJSONData ();
-	}
 
 	// Update is called once per frame
 	void Update () {
@@ -77,10 +47,5 @@ public class TowerBehavior : MonoBehaviour {
 			toDeactivate = false;
 		}
 
-	}
-
-	void setJSONData () {
-		TowerData towerData = JsonUtility.FromJson<TowerData> (dataJSON);
-		Debug.Log (towerData);
 	}
 }

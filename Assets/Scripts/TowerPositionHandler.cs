@@ -9,16 +9,17 @@ public class TowerPositionHandler : MonoBehaviour {
 	// To change status of upgrade options
 	private bool toActivate = false;
 	private bool toDeactivate = false;
-	public List<GameObject> options;
-	public List<List<string>> optionsForAges;
-
+	private List<GameObject> options;
+	private List<Vector3> optionsPosition;
 
 	// Use this for initialization
 	void Start () {
-		optionsForAges.Add (new List<string> { "Trebuchet", "Bows" });
-
+		// Set the positions for where the options would go
+		optionsPosition.Add(new Vector3(0f, -5f, 0f));
+		optionsPosition.Add(new Vector3(-5f, 0f, 0f));
+		optionsPosition.Add(new Vector3(5f, 0, 0f));
 	}
-	
+	 
 	// Update is called once per frame
 	void Update () {
 		// Gets whether left or right mouse is clicked
@@ -37,19 +38,22 @@ public class TowerPositionHandler : MonoBehaviour {
 			mouseOnTower = true;
 		}
 
-		// TODO If there is a difference in the "era" or "age" load different picture for the options
+		int numTowers = 3;
+		// If there is a difference in the "era" or "age" load different picture for the options
+		// Print out a button for each tower in this age
 
 		// If selected, show the options for towers
 		if (toActivate) {
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < numTowers; i++) {
 				options [i].SetActive (true);
+				options [i].localPosition = optionsPosition + this.gameObject.getLocalPosition();
 			}
 			toActivate = false;
 		}
 
 		// IF clicked elsewhere, hide options for towers
 		if (toDeactivate) {
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < numTowers; i++) {
 				options [i].SetActive (false);
 			}
 			toDeactivate = false;
