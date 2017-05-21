@@ -9,15 +9,14 @@ public class TowerPositionHandler : MonoBehaviour {
 	// To change status of upgrade options
 	private bool toActivate = false;
 	private bool toDeactivate = false;
-	private List<GameObject> options;
-	private List<Vector3> optionsPosition;
+	// Gets the three circles for options
+	public GameObject circleOption1;
+	public GameObject circleOption2;
+	public GameObject circleOption3;
 
 	// Use this for initialization
 	void Start () {
 		// Set the positions for where the options would go
-		optionsPosition.Add(new Vector3(0f, -5f, 0f));
-		optionsPosition.Add(new Vector3(-5f, 0f, 0f));
-		optionsPosition.Add(new Vector3(5f, 0, 0f));
 	}
 	 
 	// Update is called once per frame
@@ -44,18 +43,17 @@ public class TowerPositionHandler : MonoBehaviour {
 
 		// If selected, show the options for towers
 		if (toActivate) {
-			for (int i = 0; i < numTowers; i++) {
-				options [i].SetActive (true);
-				options [i].localPosition = optionsPosition + this.gameObject.getLocalPosition();
-			}
+			circleOption1.SetActive(true);
+			circleOption2.SetActive(true);
+			circleOption3.SetActive(true);
 			toActivate = false;
 		}
 
 		// IF clicked elsewhere, hide options for towers
 		if (toDeactivate) {
-			for (int i = 0; i < numTowers; i++) {
-				options [i].SetActive (false);
-			}
+			circleOption1.SetActive(false);
+			circleOption2.SetActive(false);
+			circleOption3.SetActive(false);
 			toDeactivate = false;
 		}
 	}
