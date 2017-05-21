@@ -19,8 +19,15 @@ public class GameManager : MonoBehaviour {
 	//store entire JSON file data into global variable
 	void initJSONData () {
 		//store json string into global variable
-		string path = Application.dataPath + "/Resources/data.json";
-		GlobalVariables.JSONData = File.ReadAllText (path);
-		Debug.Log (GlobalVariables.JSONData);
+		GlobalVariables.JSONData = File.ReadAllText (Application.dataPath + "/Resources/towerData.json");
+		TowerData data = JsonUtility.FromJson<TowerData> (GlobalVariables.JSONData);
+		var JSONresult = Json.Deserialize(result.Text) as Dictionary<string, object>;
+
+
 	}
+}
+
+[Serializable]
+public class TowerData {
+	public object[] data;
 }
